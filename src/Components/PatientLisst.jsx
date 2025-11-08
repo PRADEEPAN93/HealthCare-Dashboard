@@ -1,21 +1,19 @@
 import React from "react";
-import { MoreHorizontal, Search } from "lucide-react";
+import { MoreHorizontal, Search, HeartPulse, User2 } from "lucide-react";
 
-/**
- * PatientList Component
- * @param {Object[]} patients - Array of patient objects
- * @param {Object} selectedPatient - Currently selected patient
- * @param {Function} onSelectPatient - Callback triggered when patient is clicked
- */
 const PatientList = ({ patients = [], selectedPatient, onSelectPatient }) => {
   return (
     <div className="bg-white rounded-2xl shadow">
       {/* Header */}
       <div className="flex justify-between items-center px-4 py-4 border-b">
-        <h2 className="text-xl font-extrabold text-gray-800">Patients</h2>
+        <h2 className="text-xl font-extrabold text-gray-800 flex items-center gap-2">
+          <User2 className="text-teal-500" size={18} />
+          Patients
+        </h2>
         <button
           className="p-2 rounded-full hover:bg-gray-100 transition"
-          aria-label="Search">
+          aria-label="Search"
+        >
           <Search size={18} />
         </button>
       </div>
@@ -47,9 +45,16 @@ const PatientList = ({ patients = [], selectedPatient, onSelectPatient }) => {
                       alt={patient.name}
                       className="w-12 h-12 rounded-full object-cover border border-gray-200"
                     />
+
                     <div>
-                      <p className="font-semibold text-sm text-gray-800">
+                      <p className="font-semibold text-sm text-gray-800 flex items-center gap-1">
                         {patient.name}
+                        <HeartPulse
+                          size={14}
+                          className={`${
+                            isSelected ? "text-red-500" : "text-gray-400"
+                          }`}
+                        />
                       </p>
                       <p className="text-gray-500 text-xs">
                         {patient.gender}, {patient.age}
